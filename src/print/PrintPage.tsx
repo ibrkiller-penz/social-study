@@ -207,7 +207,7 @@ const notesHtml = (sheets: Worksheet[], blank: boolean, bk: BK): ReactNode => {
                 {rows.map((r, ri) => (
                   <tr key={ri} className={head && ri === 0 ? 'h' : ''}>
                     {r.map((c, ci) => (
-                      <td key={ci} colSpan={ci === r.length - 1 ? cols - r.length + 1 : 1} className={ci === 0 && r.length > 1 && !(head && ri === 0) ? 'h' : ''}>
+                      <td key={ci} colSpan={ci === r.length - 1 ? cols - r.length + 1 : 1} className={ci === 0 && r.length > 1 && !(head && ri === 0) && c.replace(/\[\[|\]\]/g, '').trim().length <= 14 ? 'h' : ''}>
                         {c.split(/\s*(?=•)/).map((x, k) => <div key={k}>{inline(x.trim(), blank, bk)}</div>)}
                       </td>
                     ))}

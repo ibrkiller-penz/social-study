@@ -126,7 +126,7 @@ const TableBlock = ({ rows, renderSegs }: { rows: Segment[][][]; renderSegs: Ren
             <tr key={ri} className={headRow && ri === 0 ? 'bg-teal-50 font-semibold text-teal-900' : ''}>
               {r.map((c, ci) => {
                 const span = ci === r.length - 1 ? cols - r.length + 1 : 1;
-                const head = (headRow && ri === 0) || (ci === 0 && cols > 1 && r.length > 1);
+                const head = (headRow && ri === 0) || (ci === 0 && cols > 1 && r.length > 1 && cellText(c).trim().length <= 14);
                 return (
                   <td key={ci} colSpan={span} className={`border border-slate-300 px-2 py-1.5 align-top ${head ? 'bg-slate-50 text-center font-semibold' : ''} ${cols === 1 || r.length === 1 ? 'text-center' : ''}`}>
                     {splitBullets(c).map((l, k) => (

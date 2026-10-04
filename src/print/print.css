@@ -18,7 +18,6 @@ body.print-mode { margin: 0; background: #e9e7e2; }
 .pr .bar span { opacity: .85; font-size: 12.5px; }
 .pr .sheet { background: #fff; width: 210mm; margin: 14px auto; padding: 11mm 10mm 12mm; box-shadow: 0 2px 12px rgba(0, 0, 0, .12); }
 @media (max-width: 820px) { .pr .sheet { width: auto; margin: 8px; padding: 12px; } }
-@media screen and (max-width: 640px) { .pr .cols { column-count: 1; } .pr .doc-title { flex-direction: column; align-items: flex-start; } .pr .doc-title .meta { text-align: left; } }
 @media print {
   .pr .bar { display: none; }
   body.print-mode { background: #fff; }
@@ -51,7 +50,9 @@ body.print-mode { margin: 0; background: #e9e7e2; }
 .pr .src table, .pr .notes table { border-collapse: collapse; width: 100%; font-size: 8pt; margin: 2pt 0; }
 .pr .src td, .pr .notes td { border: .5pt solid #999; padding: 1.5pt 3pt; vertical-align: top; }
 .pr .src tr.h td, .pr .notes tr.h td { background: #eee; font-weight: 700; text-align: center; }
-.pr .notes td.h { background: #f3f3f3; font-weight: 700; text-align: center; white-space: nowrap; }
+.pr .notes td.h { background: #f3f3f3; font-weight: 700; text-align: center; }
+.pr td { overflow-wrap: anywhere; word-break: keep-all; }
+.pr table { table-layout: auto; max-width: 100%; }
 .pr .src img, .pr .notes img { display: block; max-width: 100%; max-height: 62mm; margin: 2pt auto; }
 .pr .src .src { margin: 3pt 0; }
 .pr .ch { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1pt 6pt; }
@@ -92,3 +93,6 @@ body.print-mode { margin: 0; background: #e9e7e2; }
 .pr .ck .n { font-weight: 700; flex: none; min-width: 14pt; }
 .pr .ck .opt { color: var(--sub); }
 .pr .pool { font-size: 8.2pt; border: .5pt solid #999; padding: 2pt 5pt; margin: 2pt 0 4pt; break-inside: avoid; }
+
+/* 폰 화면 미리보기 (인쇄물에는 적용 안 됨) — 위 규칙들을 덮어쓰도록 맨 끝에 둔다 */
+@media screen and (max-width: 640px) { .pr .cols { column-count: 1; } .pr .ch.c5, .pr .ch.c3 { grid-template-columns: 1fr 1fr; justify-content: stretch; } .pr .ch.c2 { grid-template-columns: 1fr; } .pr .ch li, .pr .q, .pr p { overflow-wrap: anywhere; } .pr .bk { max-width: 60%; } .pr .akey { grid-template-columns: repeat(4, 1fr); } .pr .doc-title { flex-direction: column; align-items: flex-start; } .pr .doc-title .meta { text-align: left; } }

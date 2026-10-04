@@ -37,7 +37,7 @@ export const HomePage = ({ store }: { store: StudyStore }) => {
 
       <section>
         <h2 className="mb-3 text-lg font-bold">선생님별 시험범위</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {CURRENT_EXAM.teachers.map((t) => {
             const found = findUnit(t.unitId);
             const p = progress[t.unitId];
@@ -46,7 +46,7 @@ export const HomePage = ({ store }: { store: StudyStore }) => {
               <a
                 key={t.id}
                 href={unitHref(t.unitId, t.id)}
-                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
+                className="group min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-teal-50 text-teal-700">
@@ -89,7 +89,7 @@ export const HomePage = ({ store }: { store: StudyStore }) => {
 
       <section>
         <h2 className="mb-3 text-lg font-bold">다른 과목 바로가기</h2>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {EXTERNAL_LINKS.map((l) => (
             <a
               key={l.href}
@@ -114,7 +114,7 @@ export const HomePage = ({ store }: { store: StudyStore }) => {
             <h2 className="text-lg font-bold">{s.name}</h2>
             <span className="text-sm text-slate-500">{s.description}</span>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {s.units.map((u, i) => {
               const p = progress[u.id];
               return (
