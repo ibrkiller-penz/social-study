@@ -12,6 +12,12 @@ const EXTERNAL_LINKS = [
     subtitle: '별도 프로젝트로 열기',
     color: 'from-indigo-500 to-violet-600',
   },
+  {
+    href: 'https://hanguksa2-exam.web.app',
+    title: '한국사 학습실',
+    subtitle: '별도 프로젝트로 열기',
+    color: 'from-sky-700 to-blue-900',
+  },
 ];
 
 export const HomePage = ({ store }: { store: StudyStore }) => {
