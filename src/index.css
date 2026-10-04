@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+  word-break: keep-all;
+}
+
+.flip-card { perspective: 1000px; }
+.flip-inner { transition: transform .45s; transform-style: preserve-3d; }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+
+/* 인쇄용 스타일 */
+@media print {
+  body { background: white !important; }
+  .no-print, header, footer, nav { display: none !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-only { display: block !important; }
+  .print-page { page-break-after: always; }
+  .print-avoid { page-break-inside: avoid; }
+  main { max-width: 100% !important; padding: 0 !important; }
+  .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 0 !important; box-shadow: none !important; }
+  .bg-white, .bg-slate-50, .bg-teal-50, .bg-amber-50 { background: white !important; }
+  * { color: black !important; }
+  a { text-decoration: none !important; }
+  input[type=text], input:not([type]) { border: 0 !important; border-bottom: 1px solid #333 !important; background: transparent !important; }
+}
+.print-only { display: none; }
+
+/* iOS notch */
+body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+/* Snap-x for tab strips */
+.snap-x-tab { scroll-snap-type: x mandatory; }
+.snap-x-tab > * { scroll-snap-align: start; }
