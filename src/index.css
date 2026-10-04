@@ -26,7 +26,7 @@ body {
   main { max-width: 100% !important; padding: 0 !important; }
   .rounded-2xl, .rounded-xl, .rounded-lg { border-radius: 0 !important; box-shadow: none !important; }
   .bg-white, .bg-slate-50, .bg-teal-50, .bg-amber-50 { background: white !important; }
-  * { color: black !important; }
+  body:not(.print-mode) * { color: black !important; }
   a { text-decoration: none !important; }
   input[type=text], input:not([type]) { border: 0 !important; border-bottom: 1px solid #333 !important; background: transparent !important; }
 }

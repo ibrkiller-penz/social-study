@@ -5,15 +5,18 @@ import { WrongPage, countWrong } from './pages/WrongPage';
 import { MockExamPage } from './pages/MockExamPage';
 import { useRoute } from './router';
 import { useStudyStore } from './store';
+import { PrintPage } from './print/PrintPage';
 
 export const App = () => {
   const route = useRoute();
   const store = useStudyStore();
   const wrongCount = countWrong(store.state.attempts);
 
+  if (route.page === 'print') return <PrintPage key={route.query} query={route.query} />;
+
   return (
     <div className="min-h-screen">
-      <Header user={store.user} wrongCount={wrongCount} />
+      <Header user={store.user} wrongCount={wrongCount} unitId={route.page === 'unit' ? route.unitId : undefined} />
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-6">
         {route.page === 'home' && <HomePage store={store} />}
         {route.page === 'unit' && <UnitPage key={route.unitId} unitId={route.unitId} teacherId={route.teacherId} store={store} />}

@@ -4,7 +4,8 @@ export type Route =
   | { page: 'home' }
   | { page: 'unit'; unitId: string; teacherId?: string }
   | { page: 'wrong' }
-  | { page: 'mock' };
+  | { page: 'mock' }
+  | { page: 'print'; query: string };
 
 const parse = (): Route => {
   const [path, query] = location.hash.replace(/^#/, '').split('?');
@@ -15,6 +16,7 @@ const parse = (): Route => {
   }
   if (parts[0] === 'wrong') return { page: 'wrong' };
   if (parts[0] === 'mock') return { page: 'mock' };
+  if (parts[0] === 'print') return { page: 'print', query: query ?? '' };
   return { page: 'home' };
 };
 

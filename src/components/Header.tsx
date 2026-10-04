@@ -1,19 +1,31 @@
-import { BookMarked, Globe2, LogIn, LogOut } from 'lucide-react';
+import { useState } from 'react';
+import { BookMarked, FileDown, Globe2, LogIn, LogOut } from 'lucide-react';
+import { PdfDialog } from '../print/PdfDialog';
 import { firebaseEnabled, login, logout, type User } from '../firebase';
 
 interface Props {
   user: User | null;
   wrongCount: number;
+  unitId?: string;
 }
 
-export const Header = ({ user, wrongCount }: Props) => (
+export const Header = ({ user, wrongCount, unitId }: Props) => {
+  const [pdf, setPdf] = useState(false);
+  return (
   <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
     <div className="mx-auto flex h-14 max-w-5xl items-center gap-3 px-4">
       <a href="#/" className="flex items-center gap-2 font-bold text-teal-700">
         <Globe2 className="h-6 w-6" />
-        <span className="text-base sm:text-lg">사회 학습실</span>
+        <span className="whitespace-nowrap text-base sm:text-lg">사회 학습실</span>
       </a>
-      <nav className="ml-auto flex items-center gap-2">
+      <nav className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <button
+          onClick={() => setPdf(true)}
+          className="flex items-center gap-1 rounded-lg bg-slate-900 px-2.5 py-1.5 text-sm font-bold text-white hover:bg-slate-700"
+        >
+          <FileDown className="h-4 w-4" />
+          PDF<span className="hidden sm:inline"> 저장</span>
+        </button>
         <a
           href="#/wrong"
           className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100"
@@ -46,5 +58,7 @@ export const Header = ({ user, wrongCount }: Props) => (
           ))}
       </nav>
     </div>
+    {pdf && <PdfDialog unitId={unitId} onClose={() => setPdf(false)} />}
   </header>
-);
+  );
+};
